@@ -19,12 +19,15 @@ const CommentArea = props => {
   const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const fetchComments = async () => {
+    if (!props.asin) {
+      return;
+    }
     setIsLoading(true);
     try {
       let response = await fetch("https://striveschool-api.herokuapp.com/api/books/" + props.asin + "/comments/", {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU4NTNlZGMwMzRmZjAwMTQwM2Y0ZDYiLCJpYXQiOjE2OTQxNTQ2NDgsImV4cCI6MTY5NTM2NDI0OH0.5gepNiVnuLWo2L0s87jHnQ7cjSPAOd5NlVPXM9Qge5I",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU4NTNlZGMwMzRmZjAwMTQwM2Y0ZDYiLCJpYXQiOjE2OTQ1MjMzMzQsImV4cCI6MTY5NTczMjkzNH0.ODo21wybCYFBh1-EMKvm6SnMtr2I2O0cYGeVtgqhxOo",
         },
       });
       if (response.ok) {
